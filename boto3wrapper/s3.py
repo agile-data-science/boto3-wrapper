@@ -80,7 +80,7 @@ class S3Selecter:
                         records["Payload"]
                     )
 
-            # HACK: decodeはこっちで
+            # HACK: decode is here
             if len(result_stream) > 0:
                 yield ast.literal_eval(b"".join(result_stream).decode("utf-8"))
 
@@ -118,7 +118,7 @@ class S3Reader:
             bodystr = body.decode("utf-8")
             df = pd.read_csv(StringIO(bodystr), **kwargs)
         except ClientError:
-            # HACK: raise推奨
+            # HACK: raise recommended
             df = pd.DataFrame()
         return df
 
