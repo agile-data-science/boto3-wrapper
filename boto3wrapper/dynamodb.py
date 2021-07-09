@@ -86,9 +86,7 @@ class Table:
 #     def _convert_decimal_to_float(self, decimal_dict_data):
 #         return json.loads(json.dumps(decimal_dict_data, default=_decimal_to_int_or_float))
 
-#     # TODO: 上で定義したget_dataを使えばこちらは不要。
 
-# # dictデータのdecimal型をint or floatにキャスト
 # def _decimal_to_int_or_float(obj):
 #     if isinstance(obj, Decimal):
 #         if obj == int(obj):
