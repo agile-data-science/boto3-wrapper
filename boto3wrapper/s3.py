@@ -3,8 +3,7 @@ import ast
 import pandas as pd
 import boto3
 from botocore.exceptions import ClientError
-
-
+from botocore.retries import bucket
 class S3Selecter:
     def __init__(self, bucket):
         self.bucket = bucket
@@ -173,3 +172,22 @@ class S3Reader:
                 map(lambda x: x.split('/')[-1], file_name_list))
 
             return file_name_list
+
+class S3Writer:
+    def __init__(self, bucket, s3_client):
+        self.bucket = bucket
+        self.s3_client = s3_client
+    
+    def write_json(self, file_path, dict_data: dict):
+        json_data = json.dumps(dict_data, index=4,
+                               ensure_ascii=False)
+        js_buffer = StringIO()
+        js_buffer.write(json_data)
+        
+        response = self.s3_client.put_object(
+            Body=js_buffer.getvalue(),
+            Bucket=self.bucket,
+            Key=file_path
+        )
+        
+        return response
