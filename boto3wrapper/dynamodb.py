@@ -1,6 +1,8 @@
 import boto3
 from boto3.dynamodb.conditions import Key
 
+# HACK: Table Class(kanemitsu)
+# self.tableにboto3.resource(...).tableにすると、元々のdynamodb tableの組み込み関数が呼べない
 
 class Table:
     """[summary]"""

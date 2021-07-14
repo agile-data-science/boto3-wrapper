@@ -128,6 +128,7 @@ class S3Reader:
         dict_data = json.loads(bodystr)
         return dict_data
 
+    # TODO: move to S3Writer Class
     def put_df_as_csv(self, file_path, df: pd.DataFrame):
         csv_buffer = StringIO()
         df.to_csv(csv_buffer, index=False, encoding='utf-8-sig')
