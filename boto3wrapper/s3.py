@@ -180,7 +180,7 @@ class S3Writer:
         self.s3_client = s3_client
     
     def write_json(self, file_path, dict_data: dict):
-        json_data = json.dumps(dict_data, index=4,
+        json_data = json.dumps(dict_data, indent=4,
                                ensure_ascii=False)
         js_buffer = StringIO()
         js_buffer.write(json_data)
