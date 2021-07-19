@@ -175,9 +175,9 @@ class S3Reader:
             return file_name_list
 
 class S3Writer:
-    def __init__(self, bucket, s3_client):
+    def __init__(self, bucket):
         self.bucket = bucket
-        self.s3_client = s3_client
+        self.s3_client = boto3.client("s3")
     
     def write_json(self, file_path, dict_data: dict):
         json_data = json.dumps(dict_data, indent=4,
